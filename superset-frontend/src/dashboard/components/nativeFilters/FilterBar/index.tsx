@@ -107,7 +107,10 @@ const publishDataMask = debounce(
     // replace params only when current page is /superset/dashboard
     // this prevents a race condition between updating filters and navigating to Explore
     if (window.location.pathname.includes('/superset/dashboard')) {
-      history.location.pathname = window.location.pathname;
+      history.location.pathname = window.location.pathname.replace(
+        '/stat_bi/',
+        '/',
+      );
       history.replace({
         search: newParams.toString(),
       });

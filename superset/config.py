@@ -98,7 +98,7 @@ PACKAGE_JSON_FILE = pkg_resources.resource_filename(
 #     "type": "image/png"
 #     "rel": "icon"
 # },
-FAVICONS = [{"href": "/static/assets/images/favicon.png"}]
+FAVICONS = [{"href": "/stat_bi/static/assets/images/favicon.png"}]
 
 
 def _try_json_readversion(filepath: str) -> str | None:
@@ -236,7 +236,7 @@ SQLALCHEMY_ENCRYPTED_FIELD_TYPE_ADAPTER = (  # pylint: disable=invalid-name
 QUERY_SEARCH_LIMIT = 1000
 
 # Flask-WTF flag for CSRF
-WTF_CSRF_ENABLED = True
+WTF_CSRF_ENABLED = False
 
 # Add endpoints that need to be exempt from CSRF protection
 WTF_CSRF_EXEMPT_LIST = [
@@ -246,7 +246,7 @@ WTF_CSRF_EXEMPT_LIST = [
 ]
 
 # Whether to run the web server in debug mode or not
-DEBUG = os.environ.get("FLASK_ENV") == "development"
+DEBUG = os.environ.get("FLASK_ENV") == "production"
 FLASK_USE_RELOAD = True
 
 # Enable profiling of Python calls. Turn this on and append ``?_instrument=1``
@@ -270,10 +270,10 @@ SCHEDULED_QUERIES: dict[str, Any] = {}
 # GLOBALS FOR APP Builder
 # ------------------------------
 # Uncomment to setup Your App name
-APP_NAME = "Superset"
+APP_NAME = "UCI STAT BI"
 
 # Specify the App icon
-APP_ICON = "/static/assets/images/superset-logo-horiz.png"
+APP_ICON = "/stat_bi/static/assets/images/superset-logo-horiz.png"
 
 # Specify where clicking the logo would take the user
 # e.g. setting it to '/' would take the user to '/superset/welcome/'
@@ -331,7 +331,7 @@ PUBLIC_ROLE_LIKE: str | None = None
 # Babel config for translations
 # ---------------------------------------------------
 # Setup default language
-BABEL_DEFAULT_LOCALE = "en"
+BABEL_DEFAULT_LOCALE = "ko"
 # Your application default translation path
 BABEL_DEFAULT_FOLDER = "superset/translations"
 # The allowed translation for you app
@@ -1311,7 +1311,7 @@ WEBDRIVER_CONFIGURATION: dict[Any, Any] = {"service_log_path": "/dev/null"}
 WEBDRIVER_OPTION_ARGS = ["--headless"]
 
 # The base URL to query for accessing the user interface
-WEBDRIVER_BASEURL = "http://0.0.0.0:8080/"
+WEBDRIVER_BASEURL = "http://localhost:8088/stat_bi/"
 # The base URL for the email report hyperlinks.
 WEBDRIVER_BASEURL_USER_FRIENDLY = WEBDRIVER_BASEURL
 # Time selenium will wait for the page to load and render for the email report.
@@ -1393,7 +1393,7 @@ SQLALCHEMY_EXAMPLES_URI = None
 
 # Optional prefix to be added to all static asset paths when rendering the UI.
 # This is useful for hosting assets in an external CDN, for example
-STATIC_ASSETS_PREFIX = ""
+STATIC_ASSETS_PREFIX = "/stat_bi"
 
 # Some sqlalchemy connection strings can open Superset to security risks.
 # Typically these should not be allowed.
@@ -1446,7 +1446,7 @@ GLOBAL_ASYNC_QUERIES_TRANSPORT = "polling"
 GLOBAL_ASYNC_QUERIES_POLLING_DELAY = int(
     timedelta(milliseconds=500).total_seconds() * 1000
 )
-GLOBAL_ASYNC_QUERIES_WEBSOCKET_URL = "ws://127.0.0.1:8080/"
+GLOBAL_ASYNC_QUERIES_WEBSOCKET_URL = "ws://127.0.0.1:8088/stat_bi/"
 
 # Embedded config options
 GUEST_ROLE_NAME = "Public"
@@ -1512,7 +1512,7 @@ ENVIRONMENT_TAG_CONFIG = {
     "values": {
         "development": {
             "color": "error.base",
-            "text": "Development",
+            "text": "",
         },
         "production": {
             "color": "",

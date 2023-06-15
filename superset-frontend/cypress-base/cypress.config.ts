@@ -41,7 +41,7 @@ export default defineConfig({
       // eslint-disable-next-line global-require,import/extensions
       return require('./cypress/plugins/index.js')(on, config);
     },
-    baseUrl: 'http://localhost:8088',
+    baseUrl: 'http://localhost:8088/stat_bi',
     excludeSpecPattern: ['**/*.applitools.test.ts'],
     specPattern: ['cypress/e2e/**/*.{js,jsx,ts,tsx}'],
   },

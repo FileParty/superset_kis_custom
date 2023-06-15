@@ -441,9 +441,9 @@ const DashboardBuilder: FC<DashboardBuilderProps> = () => {
   const canEdit = useSelector<RootState, boolean>(
     ({ dashboardInfo }) => dashboardInfo.dash_edit_perm,
   );
-  const dashboardIsSaving = useSelector<RootState, boolean>(
-    ({ dashboardState }) => dashboardState.dashboardIsSaving,
-  );
+  // const dashboardIsSaving = useSelector<RootState, boolean>(
+  //   ({ dashboardState }) => dashboardState.dashboardIsSaving,
+  // );
   const fullSizeChartId = useSelector<RootState, number | null>(
     state => state.dashboardState.fullSizeChartId,
   );
@@ -738,7 +738,7 @@ const DashboardBuilder: FC<DashboardBuilderProps> = () => {
           </StyledDashboardContent>
         </DashboardContentWrapper>
       </StyledContent>
-      {dashboardIsSaving && (
+      {/* {dashboardIsSaving && (
         <Loading
           css={css`
             && {
@@ -746,7 +746,7 @@ const DashboardBuilder: FC<DashboardBuilderProps> = () => {
             }
           `}
         />
-      )}
+      )} */}
     </StyledDiv>
   );
 };

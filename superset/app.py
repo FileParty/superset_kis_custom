@@ -32,6 +32,7 @@ def create_app() -> Flask:
         # Allow user to override our config completely
         config_module = os.environ.get("SUPERSET_CONFIG", "superset.config")
         app.config.from_object(config_module)
+        app.wsgi_app = PrefixMiddleware(app.wsgi_app, prefix='/stat_bi')
 
         app_initializer = app.config.get("APP_INITIALIZER", SupersetAppInitializer)(app)
         app_initializer.init_app()
@@ -46,3 +47,20 @@ def create_app() -> Flask:
 
 class SupersetApp(Flask):
     pass
+
+class PrefixMiddleware(object):
+
+    def __init__(self, app, prefix='/stat_bi'):
+        self.app = app
+        self.prefix = prefix
+
+    def __call__(self, environ, start_response):
+
+        if environ['PATH_INFO'].startswith(self.prefix):
+            environ['PATH_INFO'] = environ['PATH_INFO'][len(self.prefix):]
+            environ['SCRIPT_NAME'] = self.prefix
+            return self.app(environ, start_response)
+        else:
+            if not environ['PATH_INFO'].startswith(self.prefix + '/'):
+                environ['PATH_INFO'] = self.prefix + environ['PATH_INFO']
+            return self.app(environ, start_response)

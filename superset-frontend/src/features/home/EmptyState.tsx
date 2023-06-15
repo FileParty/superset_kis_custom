@@ -131,7 +131,7 @@ export default function EmptyState({
     return (
       <EmptyContainer>
         <Empty
-          image={`/static/assets/images/${tableIcon[tableName]}`}
+          image={`/stat_bi/static/assets/images/${tableIcon[tableName]}`}
           description={
             tableName === WelcomeTable.Recents || tab === TableTab.Other
               ? recent
@@ -164,7 +164,7 @@ export default function EmptyState({
   return (
     <EmptyContainer>
       <Empty
-        image="/static/assets/images/star-circle.svg"
+        image="/stat_bi/static/assets/images/star-circle.svg"
         description={
           <span className="no-favorites">
             {t("You don't have any favorites yet!")}

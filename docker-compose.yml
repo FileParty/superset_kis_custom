@@ -26,7 +26,8 @@ x-superset-volumes: &superset-volumes
   - ./superset-frontend:/app/superset-frontend
   - superset_home:/app/superset_home
   - ./tests:/app/tests
-
+  - ./docker/pythonpath_dev/superset_config.py:/app/pythonpath/superset_config.py
+  
 version: "3.7"
 services:
   redis:

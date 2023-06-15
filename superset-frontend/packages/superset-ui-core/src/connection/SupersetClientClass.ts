@@ -34,8 +34,8 @@ import {
 import { DEFAULT_FETCH_RETRY_OPTIONS, DEFAULT_BASE_URL } from './constants';
 
 const defaultUnauthorizedHandler = () => {
-  if (!window.location.pathname.startsWith('/login')) {
-    window.location.href = `/login?next=${window.location.href}`;
+  if (!window.location.pathname.startsWith('/stat_bi/login')) {
+    window.location.href = `/stat_bi/login?next=${window.location.href}`;
   }
 };
 
@@ -270,8 +270,9 @@ export default class SupersetClientClass {
 
     const host = inputHost ?? this.host;
     const cleanHost = host.slice(-1) === '/' ? host.slice(0, -1) : host; // no backslash
-
-    return `${this.protocol}//${cleanHost}/${
+    let prefix = '';
+    if (!cleanHost.match(/\/stat_bi\//g)) prefix = '/stat_bi';
+    return `${this.protocol}//${cleanHost}${prefix}/${
       endpoint[0] === '/' ? endpoint.slice(1) : endpoint
     }`;
   }

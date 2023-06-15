@@ -48,7 +48,7 @@ class R(BaseSupersetView):  # pylint: disable=invalid-name
 
     @staticmethod
     def _validate_dashboard_url(url: str) -> Optional[str]:
-        if url.startswith("//superset/dashboard/"):
+        if url.startswith("//dashboard/"):
             return url
 
         return None

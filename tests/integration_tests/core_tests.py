@@ -1024,7 +1024,7 @@ class TestCore(SupersetTestCase):
         urls = [
             "/superset/sqllab",
             "/superset/welcome",
-            f"/superset/dashboard/{dash_id}/",
+            f"/dashboard/{dash_id}/",
             "/superset/profile/admin/",
             f"/explore/?datasource_type=table&datasource_id={tbl_id}",
         ]
@@ -1227,7 +1227,7 @@ class TestCore(SupersetTestCase):
         exception = SupersetException("Error message")
         mock_db_connection_mutator.side_effect = exception
         dash = db.session.query(Dashboard).first()
-        url = f"/superset/dashboard/{dash.id}/"
+        url = f"/dashboard/{dash.id}/"
 
         self.login()
         data = self.get_resp(url)
@@ -1237,7 +1237,7 @@ class TestCore(SupersetTestCase):
         exception = SQLAlchemyError("Error message")
         mock_db_connection_mutator.side_effect = exception
         dash = db.session.query(Dashboard).first()
-        url = f"/superset/dashboard/{dash.id}/"
+        url = f"/dashboard/{dash.id}/"
 
         self.login()
         data = self.get_resp(url)

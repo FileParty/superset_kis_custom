@@ -148,7 +148,7 @@ export default function makeApi<
   }
 
   request.method = method;
-  request.endpoint = endpoint;
+  request.endpoint = `http://localhost:8088/stat_bi${endpoint}`;
   request.requestType = requestType;
 
   return request;

@@ -362,7 +362,7 @@ def menu_data(user: User) -> dict[str, Any]:
     return {
         "menu": menu,
         "brand": {
-            "path": appbuilder.app.config["LOGO_TARGET_PATH"] or "/superset/welcome/",
+            "path": appbuilder.app.config["LOGO_TARGET_PATH"] or "/stat_bi/superset/welcome/",
             "icon": appbuilder.app_icon,
             "alt": appbuilder.app_name,
             "tooltip": appbuilder.app.config["LOGO_TOOLTIP"],

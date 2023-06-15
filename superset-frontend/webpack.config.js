@@ -43,7 +43,7 @@ const BUILD_DIR = path.resolve(__dirname, '../superset/static/assets');
 const ROOT_DIR = path.resolve(__dirname, '..');
 
 const {
-  mode = 'development',
+  mode = 'production',
   devserverPort = 9000,
   measure = false,
   analyzeBundle = false,
@@ -52,7 +52,7 @@ const {
 } = parsedArgs;
 const isDevMode = mode !== 'production';
 const isDevServer = process.argv[1].includes('webpack-dev-server');
-const ASSET_BASE_URL = process.env.ASSET_BASE_URL || '';
+const ASSET_BASE_URL = process.env.ASSET_BASE_URL || '/stat_bi';
 
 const output = {
   path: BUILD_DIR,
@@ -177,7 +177,7 @@ if (isDevMode) {
   // otherwise the websocket client will initialize twice, creating two sockets.
   // Ref: https://github.com/gaearon/react-hot-loader/issues/141
   PREAMBLE.unshift(
-    `webpack-dev-server/client?http://localhost:${devserverPort}`,
+    `webpack-dev-server/client?http://localhost:${devserverPort}/stat_bi`,
   );
 }
 

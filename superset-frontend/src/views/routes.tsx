@@ -136,7 +136,7 @@ export const routes: Routes = [
     Component: DashboardList,
   },
   {
-    path: '/superset/dashboard/:idOrSlug/',
+    path: '/dashboard/:idOrSlug/',
     Component: Dashboard,
   },
   {

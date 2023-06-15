@@ -43,6 +43,18 @@ def get_env_variable(var_name: str, default: Optional[str] = None) -> str:
             )
             raise OSError(error_msg)
 
+# USE Setting - 230614 kis
+APPLICATION_ROOT = "/stat_bi/"
+# SECRET_KEY create
+SUPERSET_SECRET_KEY = "h6UhQNKddj9w7Kkpp6QVfjW5gLJWghPH6nJyPZ4jsHzLxZcFSnyNYjC/"
+SECRET_KEY = "h6UhQNKddj9w7Kkpp6QVfjW5gLJWghPH6nJyPZ4jsHzLxZcFSnyNYjC/"
+# CORS
+ENABLE_CORS = True
+# Jinja Template
+ENABLE_TEMPLATE_PROCESSING = True
+GLOBAL_ASYNC_QUERIES_WEBSOCKET_URL = "ws://127.0.0.1:8088/stat_bi/"
+PUBLIC_ROLE_LIKE_GAMMA = True
+STATIC_ASSETS_PREFIX = "/stat_bi"
 
 DATABASE_DIALECT = get_env_variable("DATABASE_DIALECT")
 DATABASE_USER = get_env_variable("DATABASE_USER")
@@ -97,11 +109,11 @@ class CeleryConfig:
     }
 
 
-CELERY_CONFIG = CeleryConfig
+# CELERY_CONFIG = CeleryConfig
 
 FEATURE_FLAGS = {"ALERT_REPORTS": True}
 ALERT_REPORTS_NOTIFICATION_DRY_RUN = True
-WEBDRIVER_BASEURL = "http://superset:8088/"
+WEBDRIVER_BASEURL = "http://superset:8088/stat_bi/"
 # The base URL for the email report hyperlinks.
 WEBDRIVER_BASEURL_USER_FRIENDLY = WEBDRIVER_BASEURL
 

@@ -332,7 +332,7 @@ export const httpRequest = (
   const method = request.method as string;
   const headers = request.headers || {};
   const url = new URL(rawUrl as string, `http://${headers.host}`);
-  if (url.pathname === '/health' && ['GET', 'HEAD'].includes(method)) {
+  if (url.pathname === '/stat_bi/health' && ['GET', 'HEAD'].includes(method)) {
     response.writeHead(200);
     response.end('OK');
   } else {

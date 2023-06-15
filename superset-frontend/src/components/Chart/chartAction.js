@@ -184,7 +184,7 @@ const v1ChartDataRequest = async (
     // eslint-disable-next-line camelcase
     domainShardingEnabled && requestParams?.dashboard_id;
   const url = getChartDataUri({
-    path: '/api/v1/chart/data',
+    path: '/stat_bi/api/v1/chart/data',
     qs,
     allowDomainSharding,
   }).toString();
@@ -566,7 +566,7 @@ export function redirectSQLLab(formData) {
   return dispatch => {
     getChartDataRequest({ formData, resultFormat: 'json', resultType: 'query' })
       .then(({ json }) => {
-        const redirectUrl = '/superset/sqllab/';
+        const redirectUrl = '/stat_bi/superset/sqllab/';
         const payload = {
           datasourceKey: formData.datasource,
           sql: json.result[0].query,

@@ -69,7 +69,7 @@ const LocationPathnameLogger = () => {
 };
 
 const App = () => (
-  <Router>
+  <Router basename="/stat_bi">
     <ScrollToTop />
     <LocationPathnameLogger />
     <RootContextProviders>

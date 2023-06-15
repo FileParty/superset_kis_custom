@@ -56,7 +56,7 @@ class MachineAuthProvider:
             return self._auth_webdriver_func_override(driver, user)
 
         # Setting cookies requires doing a request first
-        driver.get(headless_url("/login/"))
+        driver.get(headless_url("/stat_bi/login/"))
 
         if user:
             cookies = self.get_auth_cookies(user)
@@ -73,7 +73,7 @@ class MachineAuthProvider:
     @staticmethod
     def get_auth_cookies(user: User) -> dict[str, str]:
         # Login with the user specified to get the reports
-        with current_app.test_request_context("/login"):
+        with current_app.test_request_context("/stat_bi/login"):
             login_user(user)
             # A mock response object to get the cookie information from
             response = Response()

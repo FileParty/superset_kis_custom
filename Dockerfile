@@ -95,7 +95,7 @@ RUN chmod a+x /usr/bin/run-server.sh
 
 USER superset
 
-HEALTHCHECK CMD curl -f "http://localhost:$SUPERSET_PORT/health"
+HEALTHCHECK CMD curl -f "http://localhost:$SUPERSET_PORT/stat_bi/health"
 
 EXPOSE ${SUPERSET_PORT}
 

@@ -79,7 +79,7 @@ const createFetchResourceMethod =
     user?: { userId: string | number; firstName: string; lastName: string },
   ) =>
   async (filterValue = '', page: number, pageSize: number) => {
-    const resourceEndpoint = `/api/v1/${resource}/${method}/${relation}`;
+    const resourceEndpoint = `/stat_bi/api/v1/${resource}/${method}/${relation}`;
     const queryParams = rison.encode_uri({
       filter: filterValue,
       page,

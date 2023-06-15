@@ -68,7 +68,7 @@ export function getAnnotationJsonUrl(slice_id, force) {
 
   const uri = URI(window.location.search);
   return uri
-    .pathname('/api/v1/chart/data')
+    .pathname('/stat_bi/api/v1/chart/data')
     .search({
       form_data: safeStringify({ slice_id }),
       force,
@@ -83,9 +83,9 @@ export function getURIDirectory(endpointType = 'base') {
       endpointType,
     )
   ) {
-    return '/superset/explore_json/';
+    return '/stat_bi/superset/explore_json/';
   }
-  return '/explore/';
+  return '/stat_bi/explore/';
 }
 
 export function mountExploreUrl(endpointType, extraSearch = {}, force = false) {

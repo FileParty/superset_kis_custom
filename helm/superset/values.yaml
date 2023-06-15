@@ -290,7 +290,7 @@ supersetNode:
   podLabels: {}
   startupProbe:
     httpGet:
-      path: /health
+      path: /stat_bi/health
       port: http
     initialDelaySeconds: 15
     timeoutSeconds: 1
@@ -299,7 +299,7 @@ supersetNode:
     successThreshold: 1
   livenessProbe:
     httpGet:
-      path: /health
+      path: /stat_bi/health
       port: http
     initialDelaySeconds: 15
     timeoutSeconds: 1
@@ -308,7 +308,7 @@ supersetNode:
     successThreshold: 1
   readinessProbe:
     httpGet:
-      path: /health
+      path: /stat_bi/health
       port: http
     initialDelaySeconds: 15
     timeoutSeconds: 1
@@ -470,7 +470,7 @@ supersetCeleryFlower:
       http: nil
   startupProbe:
     httpGet:
-      path: /api/workers
+      path: /stat_bi/api/workers
       port: flower
     initialDelaySeconds: 5
     timeoutSeconds: 1
@@ -479,7 +479,7 @@ supersetCeleryFlower:
     successThreshold: 1
   livenessProbe:
     httpGet:
-      path: /api/workers
+      path: /stat_bi/api/workers
       port: flower
     initialDelaySeconds: 5
     timeoutSeconds: 1
@@ -488,7 +488,7 @@ supersetCeleryFlower:
     successThreshold: 1
   readinessProbe:
     httpGet:
-      path: /api/workers
+      path: /stat_bi/api/workers
       port: flower
     initialDelaySeconds: 5
     timeoutSeconds: 1
@@ -535,7 +535,7 @@ supersetWebsockets:
   enabled: false
   replicaCount: 1
   ingress:
-    path: /ws
+    path: /stat_bi/ws
     pathType: Prefix
   image:
     # -- There is no official image (yet), this one is community-supported
@@ -586,7 +586,7 @@ supersetWebsockets:
   containerSecurityContext: {}
   startupProbe:
     httpGet:
-      path: /health
+      path: /stat_bi/health
       port: ws
     initialDelaySeconds: 5
     timeoutSeconds: 1
@@ -595,7 +595,7 @@ supersetWebsockets:
     successThreshold: 1
   livenessProbe:
     httpGet:
-      path: /health
+      path: /stat_bi/health
       port: ws
     initialDelaySeconds: 5
     timeoutSeconds: 1
@@ -604,7 +604,7 @@ supersetWebsockets:
     successThreshold: 1
   readinessProbe:
     httpGet:
-      path: /health
+      path: /stat_bi/health
       port: ws
     initialDelaySeconds: 5
     timeoutSeconds: 1

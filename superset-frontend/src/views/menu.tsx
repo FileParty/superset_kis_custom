@@ -47,7 +47,7 @@ const app = (
   <CacheProvider value={emotionCache}>
     <ThemeProvider theme={theme}>
       <Provider store={store}>
-        <BrowserRouter>
+        <BrowserRouter basename="/stat_bi">
           <QueryParamProvider
             ReactRouterRoute={Route}
             stringifyOptions={{ encode: false }}
