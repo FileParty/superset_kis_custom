@@ -1230,7 +1230,7 @@ class Superset(BaseSupersetView):  # pylint: disable=too-many-public-methods
             security_manager.raise_for_dashboard_access(dashboard)
         except DashboardAccessDeniedError as ex:
             return redirect_with_flash(
-                url="/dashboard/list/",
+                url="/superset/dashboard/list/",
                 message=utils.error_msg_from_exception(ex),
                 category="danger",
             )
@@ -1270,11 +1270,11 @@ class Superset(BaseSupersetView):  # pylint: disable=too-many-public-methods
             value = GetDashboardPermalinkCommand(key).run()
         except DashboardPermalinkGetFailedError as ex:
             flash(__("Error: %(msg)s", msg=ex.message), "danger")
-            return redirect("/dashboard/list/")
+            return redirect("/superset/dashboard/list/")
         if not value:
             return json_error_response(_("permalink state not found"), status=404)
         dashboard_id, state = value["dashboardId"], value.get("state", {})
-        url = f"/dashboard/{dashboard_id}?permalink_key={key}"
+        url = f"/superset/dashboard/{dashboard_id}?permalink_key={key}"
         if url_params := state.get("urlParams"):
             params = parse.urlencode(url_params)
             url = f"{url}&{params}"

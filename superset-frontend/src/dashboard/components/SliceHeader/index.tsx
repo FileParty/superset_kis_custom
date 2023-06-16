@@ -251,7 +251,7 @@ const SliceHeader: FC<SliceHeaderProps> = ({
             {!uiConfig.hideChartControls && (
               <FiltersBadge chartId={slice.slice_id} />
             )}
-            {!uiConfig.hideChartControls && (
+            {!uiConfig.hideChartControls && false && (
               <SliceHeaderControls
                 slice={slice}
                 isCached={isCached}

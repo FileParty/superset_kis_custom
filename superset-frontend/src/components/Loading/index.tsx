@@ -63,14 +63,18 @@ export default function Loading({
   className,
 }: Props) {
   return (
-    <LoaderImg
-      className={cls('loading', position, className)}
-      alt="Loading..."
-      src={image || Loader}
-      role="status"
-      aria-live="polite"
-      aria-label="Loading"
-      data-test="loading-indicator"
-    />
+    <>
+      {false && (
+        <LoaderImg
+          className={cls('loading', position, className)}
+          alt="Loading..."
+          src={image || Loader}
+          role="status"
+          aria-live="polite"
+          aria-label="Loading"
+          data-test="loading-indicator"
+        />
+      )}
+    </>
   );
 }

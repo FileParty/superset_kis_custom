@@ -55,12 +55,10 @@ class PrefixMiddleware(object):
         self.prefix = prefix
 
     def __call__(self, environ, start_response):
-
+        environ['SCRIPT_NAME'] = self.prefix
         if environ['PATH_INFO'].startswith(self.prefix):
             environ['PATH_INFO'] = environ['PATH_INFO'][len(self.prefix):]
-            environ['SCRIPT_NAME'] = self.prefix
             return self.app(environ, start_response)
         else:
-            if not environ['PATH_INFO'].startswith(self.prefix + '/'):
-                environ['PATH_INFO'] = self.prefix + environ['PATH_INFO']
+            environ['PATH_INFO'] = self.prefix + environ['PATH_INFO']
             return self.app(environ, start_response)

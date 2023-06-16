@@ -22,6 +22,8 @@ import {
 } from 'src/dashboard/util/constants';
 import { DashboardLayout } from 'src/dashboard/types';
 import findTabIndexByComponentId from 'src/dashboard/util/findTabIndexByComponentId';
+import downloadAsPDF from 'src/utils/downloadAsPDF';
+import downloadAsImage from 'src/utils/downloadAsImage';
 
 export const getRootLevelTabsComponent = (dashboardLayout: DashboardLayout) => {
   const dashboardRoot = dashboardLayout[DASHBOARD_ROOT_ID];
@@ -50,3 +52,14 @@ export const getRootLevelTabIndex = (
       directPathToChild,
     }),
   );
+
+export const downloadAsPdfUtil = (
+  selector: string,
+  description: string,
+): void => downloadAsPDF(selector, description);
+
+export const downloadAsImageUtil = (
+  selector: string,
+  description: string,
+  isExactSelector: boolean,
+) => downloadAsImage(selector, description, isExactSelector);

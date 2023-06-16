@@ -132,11 +132,11 @@ export const routes: Routes = [
     Component: Home,
   },
   {
-    path: '/dashboard/list/',
+    path: '/superset/dashboard/list/',
     Component: DashboardList,
   },
   {
-    path: '/dashboard/:idOrSlug/',
+    path: '/superset/dashboard/:idOrSlug/',
     Component: Dashboard,
   },
   {

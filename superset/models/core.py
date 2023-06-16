@@ -490,7 +490,7 @@ class Database(
 
         if DB_CONNECTION_MUTATOR:
             if not source and request and request.referrer:
-                if "/dashboard/" in request.referrer:
+                if "/superset/dashboard/" in request.referrer:
                     source = utils.QuerySource.DASHBOARD
                 elif "/explore/" in request.referrer:
                     source = utils.QuerySource.CHART

@@ -83,7 +83,12 @@ import {
   OPEN_FILTER_BAR_MAX_WIDTH,
   OPEN_FILTER_BAR_WIDTH,
 } from 'src/dashboard/constants';
-import { getRootLevelTabsComponent, shouldFocusTabs } from './utils';
+import {
+  getRootLevelTabsComponent,
+  shouldFocusTabs,
+  downloadAsPdfUtil,
+  downloadAsImageUtil,
+} from './utils';
 import DashboardContainer from './DashboardContainer';
 import { useNativeFilters } from './state';
 
@@ -450,6 +455,45 @@ const DashboardBuilder: FC<DashboardBuilderProps> = () => {
   const crossFiltersEnabled = isFeatureEnabled(
     FeatureFlag.DASHBOARD_CROSS_FILTERS,
   );
+
+  function postMessageEvent(event: any) {
+    const messageParam = event.data;
+    if (messageParam !== null && messageParam!.ext != null) {
+      console.log(messageParam);
+      switch (messageParam.ext) {
+        case 'PDF':
+          downloadAsPdfUtil('.dashboard', messageParam.fileNm);
+          break;
+        case 'JPG':
+          downloadAsImageUtil('.dashboard', messageParam.fileNm, true)(event);
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('message', postMessageEvent);
+    return () => {
+      window.removeEventListener('message', postMessageEvent);
+    };
+  });
+
+  const {
+    showDashboard,
+    dashboardFiltersOpen,
+    toggleDashboardFiltersOpen,
+    nativeFiltersEnabled,
+  } = useNativeFilters();
+
+  useEffect(() => {
+    console.log(`test!!! : ${window.parent}`);
+    if (showDashboard && window.parent != null) {
+      window.parent.postMessage({ flag: showDashboard, send: 'stat_bi' }, '*');
+    }
+  }, [showDashboard]);
+
   const filterBarOrientation = useSelector<RootState, FilterBarOrientation>(
     ({ dashboardInfo }) =>
       isFeatureEnabled(FeatureFlag.HORIZONTAL_FILTER_BAR)
@@ -513,13 +557,6 @@ const DashboardBuilder: FC<DashboardBuilderProps> = () => {
       observer?.disconnect();
     };
   }, []);
-
-  const {
-    showDashboard,
-    dashboardFiltersOpen,
-    toggleDashboardFiltersOpen,
-    nativeFiltersEnabled,
-  } = useNativeFilters();
 
   const [containerRef, isSticky] = useElementOnScreen<HTMLDivElement>({
     threshold: [1],

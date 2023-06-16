@@ -71,7 +71,7 @@ class DashboardModelView(
         if not isinstance(items, list):
             items = [items]
         ids = "".join(f"&id={d.id}" for d in items)
-        return redirect(f"/dashboard/export_dashboards_form?{ids[1:]}")
+        return redirect(f"/superset/dashboard/export_dashboards_form?{ids[1:]}")
 
     @event_logger.log_this
     @has_access
@@ -85,7 +85,7 @@ class DashboardModelView(
                 mimetype="application/text",
             )
         return self.render_template(
-            "superset/export_dashboards.html", dashboards_url="/dashboard/list"
+            "superset/export_dashboards.html", dashboards_url="/superset/dashboard/list"
         )
 
     def pre_add(self, item: "DashboardModelView") -> None:
@@ -122,7 +122,7 @@ class Dashboard(BaseSupersetView):
         )
         db.session.add(new_dashboard)
         db.session.commit()
-        return redirect(f"/dashboard/{new_dashboard.id}/?edit=true")
+        return redirect(f"/superset/dashboard/{new_dashboard.id}/?edit=true")
 
     @expose("/<dashboard_id_or_slug>/embedded")
     @event_logger.log_this_with_extra_payload
